@@ -23,7 +23,19 @@ export const api = {
     `https://finnhub.io/api/v1/quote?symbol=${symbol}&token=d7vbce9r01qp7l71lnt0d7vbce9r01qp7l71lntg`
   );
 
-  return await res.json();
+  const data = await res.json();
+
+return {
+  symbol: symbol,
+  name: symbol,
+  price: data.c,
+  change: data.d,
+  changePercent: data.dp,
+  high: data.h,
+  low: data.l,
+  open: data.o,
+  previousClose: data.pc,
+};
 },
   getChart: (symbol: string, range: string) => request(`/api/stocks/${symbol}/chart?range=${range}`, () => generateChart(symbol, range)),
   getInsight: (symbol: string) => request(`/api/ai/analysis/${symbol}`, () => buildInsight(findStock(symbol))),
