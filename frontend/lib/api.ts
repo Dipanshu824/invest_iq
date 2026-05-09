@@ -18,25 +18,8 @@ export const api = {
     request(`/api/stocks/search?q=${encodeURIComponent(query)}`, () =>
       stocks.filter((stock) => `${stock.symbol} ${stock.name}`.toLowerCase().includes(query.toLowerCase()))
     ),
-  getStock: async (symbol: string) => {
-  const res = await fetch(
-    `https://finnhub.io/api/v1/quote?symbol=${symbol}&token=d7vbce9r01qp7l71lnt0d7vbce9r01qp7l71lntg`
-  );
-
-  const data = await res.json();
-
-return {
-  symbol: symbol,
-  name: symbol,
-  price: data.c,
-  change: data.d,
-  changePercent: data.dp,
-  high: data.h,
-  low: data.l,
-  open: data.o,
-  previousClose: data.pc,
-};
-},
+  getStock: (symbol: string) =>
+    request(`/api/stocks/${symbol}`, () => findStock(symbol)),
   getChart: (symbol: string, range: string) => request(`/api/stocks/${symbol}/chart?range=${range}`, () => generateChart(symbol, range)),
   getInsight: (symbol: string) => request(`/api/ai/analysis/${symbol}`, () => buildInsight(findStock(symbol))),
   getQuiz: (symbol: string) => request(`/api/quiz/${symbol}`, () => buildQuiz(findStock(symbol)))
