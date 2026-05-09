@@ -2,9 +2,9 @@
 
 import { CheckCircle2, Circle, Trophy } from "lucide-react";
 import { useMemo, useState } from "react";
-import { QuizQuestion } from "@/types/stock";
+//import { QuizQuestion } from "@/types/stock";
 
-export function McqEngine({ questions }: { questions: QuizQuestion[] }) {
+export function McqEngine({ questions }: { questions: any[] }) {
   const [answers, setAnswers] = useState<Record<string, number>>({});
   const score = useMemo(
     () => questions.reduce((total, question) => total + (answers[question.id] === question.correctIndex ? 1 : 0), 0),
