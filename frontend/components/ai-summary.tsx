@@ -1,7 +1,6 @@
 import { BrainCircuit } from "lucide-react";
-import { Insight } from "@/types/stock";
-
-export function AiSummary({ insight }: { insight: Insight }) {
+// import { Insight } from "@/types/stock";
+export function AiSummary({ insight }: { insight: any }) {
   return (
     <section className="glass rounded-2xl p-5">
       <div className="mb-4 flex items-center gap-3">
